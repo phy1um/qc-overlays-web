@@ -9,9 +9,22 @@
         <script src="/js/query.js"></script>
         <script src="/js/entry.js"></script>
         <script src="/js/dom.js"></script>
+        <script src="/js/elements.js"></script>
     </head>
 
     <body>
         <div id="container"></div>
+        <layout id="icon" x="18" y="18"></layout>
+        <layout id="name" x="82" y="12"></layout>
+        <layout id="rank" x="82" y="45" mode="duel"></layout>
+        <layout id="rank-delta" x="164" y="45" mode="duel"></layout>
+        <layout id="acc" gun="LIGHTNING_GUN" x="400" y="400"></layout>
+
+        <script>
+            window.onload = ()=> {
+                ELEMENTS.init();
+            };
+        </script>
+
     </body>
-</html>
+    </html>

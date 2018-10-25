@@ -1,6 +1,7 @@
 let DOMText, DOMImage;//, DOMBlock;
 
 (function() {
+    let CONTAINER;
     function DOMElement(dom) {
         if(dom === undefined) {
             this.dom = document.createElement("div");
@@ -9,6 +10,9 @@ let DOMText, DOMImage;//, DOMBlock;
             this.dom = dom;
         }
         this.dom.style.position = "absolute";
+        if(CONTAINER === undefined) {
+            CONTAINER = document.getElementById("container");
+        }
         CONTAINER.appendChild(this.dom);
     }
 
