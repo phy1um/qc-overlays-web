@@ -13,12 +13,15 @@
     </head>
 
     <body>
+        <!--must have an element with id "container" to recieve elements-->
         <div id="container"></div>
-        <layout id="icon" x="18" y="18"></layout>
-        <layout id="name" x="82" y="12"></layout>
-        <layout id="rank" x="82" y="45" mode="duel"></layout>
-        <layout id="rank-delta" x="164" y="45" mode="duel"></layout>
-        <layout id="acc" gun="LIGHTNING_GUN" x="400" y="400"></layout>
+        <!--this format should hopefully be self-explanatory from example!-->
+        <layout type="icon" x="18" y="18"></layout>
+        <layout type="name" x="82" y="12"></layout>
+        <layout type="rank" x="82" y="45" mode="duel"></layout>
+        <layout type="rank-delta" x="164" y="45" mode="duel"></layout>
+        <layout type="acc" gun="LIGHTNING_GUN" x="310" y="45"></layout>
+        <layout type="text" content="LG Accuracy: " x="310" y="12"></layout>
 
         <script>
             window.onload = ()=> {

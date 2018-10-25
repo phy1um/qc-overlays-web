@@ -1,7 +1,14 @@
+// public functions
 let DOMText, DOMImage;//, DOMBlock;
 
 (function() {
-    let CONTAINER;
+    // element which stores our display
+    let container;
+
+    /**
+     * create a new dom element with absolute positioning in the container
+     * @param dom - optional existing dom element this represents
+     */
     function DOMElement(dom) {
         if(dom === undefined) {
             this.dom = document.createElement("div");
@@ -10,26 +17,43 @@ let DOMText, DOMImage;//, DOMBlock;
             this.dom = dom;
         }
         this.dom.style.position = "absolute";
-        if(CONTAINER === undefined) {
-            CONTAINER = document.getElementById("container");
+        if(container === undefined) {
+            container = document.getElementById("container");
         }
-        CONTAINER.appendChild(this.dom);
+        container.appendChild(this.dom);
     }
 
+    /**
+     * reposition this element to (x, y)
+     * @param {int} x 
+     * @param {int} y 
+     */
     DOMElement.prototype.position = function(x, y) {
         this.dom.style.top = `${y}px`;
         this.dom.style.left = `${x}px`;
     };
 
+    /**
+     * reposition this element so its right edge aligns to x 
+     * @param {int} x 
+     */
     DOMElement.prototype.moveRightEdgeTo = function(x) {
         const w = this.dom.width;
         this.dom.style.left = x-w;
     };
 
+    /**
+     * set this element's inner text
+     * @param {string} text 
+     */
     DOMElement.prototype.setText = function(text) {
         this.dom.innerText = text;
     };
 
+    /**
+     * set the class of this element
+     * @param {string} name
+     */
     DOMElement.prototype.setClass = function(name) {
         this.dom.className = name;
     };
@@ -42,6 +66,9 @@ let DOMText, DOMImage;//, DOMBlock;
         return this.dom.height;
     }
 
+    /**
+     * construct a DOM element with an inner text node
+     */
     DOMText = function(text, style, x, y) {
         const p = new DOMElement(document.createElement("p"));
         p.position(x, y);
@@ -50,6 +77,10 @@ let DOMText, DOMImage;//, DOMBlock;
         return p;
     };
 
+    /**
+     * construct a DOM image with a given source and optional
+     * width/height
+     */
     DOMImage = function(src, x, y, sx, sy) {
         const i = document.createElement("img");
         i.src = src;
