@@ -10,6 +10,17 @@ html, body {
 
 .display {
     color: #ccc;
-    font-family: sans-serif;
+    font-family: Play, sans-serif;
     font-size: 22pt;
+}
+
+.error {
+    color:red;
+    font-family: sans-serif;
+    font-size:26pt;
+}
+
+p {
+    margin: 0;
+    padding: 0;
 }

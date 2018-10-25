@@ -6,9 +6,7 @@ window.onload = function() {
     CONTAINER = document.getElementById("container");
     getQCPlayerByName("rapha")
     .then((x) => {
-        const l = DOMImage(x.getIconPath(), 100, 100);
-        const r = DOMText(x.getName(), "display", 105+l.getWidth(), 100);
-        DOMText(x.getRank("duel"), "display", 100, 130);
+        DOMText(x.getWeaponAccuracy("LIGHTNING_GUN"), "display", 105, 100);
     })
     .catch((err) => console.error(err));
 }

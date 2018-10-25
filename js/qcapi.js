@@ -14,14 +14,24 @@ let getQCPlayerByName;
     }
 
     getQCPlayerByName = function(name) {
+        let p = fetch(api_path("Player/GamesSummary", {name}));
         return fetch(api_path("Player/Stats", {name}))
          .then((res) => res.json())
-         .then((json) => new QCPlayer(name, json));
+         .then((json) => new QCPlayer(name, json))
+         .then((qc) => {
+            p.then((res) => res.json())
+            .then((json) => qc.setMatchInfo(json))
+            return qc;
+         });
     }
 
     function QCPlayer(name, model) {
         this.name = name;
         this.model = model;
+    }
+
+    QCPlayer.prototype.setMatchInfo = function(p) {
+        this.matchInfo = json;
     }
 
     QCPlayer.prototype.getRank = function(mode) {
@@ -34,6 +44,22 @@ let getQCPlayerByName;
 
     QCPlayer.prototype.getName = function() {
         return this.name;
+    }
+
+    QCPlayer.prototype.getWeaponAccuracy = function(weaponName) {
+        if(typeof this.matchInfo === "string") {
+            console.log(this.matchInfo);
+        }
+        let acc = 0;
+        let c = 0;
+        for(let m of this.matchInfo.matches) {
+            const localAcc = m.weaponAccuracy[weaponName];
+            if(localAcc > 0) {
+                acc += m.weaponAccuracy[weaponName]
+                c += 1;
+            }
+        }
+        return acc/c;
     }
 
     QCPlayer.prototype.getNamePlatePath = function() {
